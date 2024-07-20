@@ -1,0 +1,74 @@
+body {
+  background-color: black;
+  color: lavender;
+  font-size: 1.5em;
+  line-height: 1.5;
+}
+
+nav {
+  border-bottom: 2px solid lavender;
+  display: flex;
+}
+
+nav a {
+  color: lavender !important;
+  width: 100%;
+  font-size: 1.4rem;
+  padding: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+nav a:hover {
+  background-color: lavender;
+  color: black !important;
+}
+
+hr {
+  border: 2px dashed lavender;
+}
+
+a {
+  color: powderblue;
+}
+
+a:visited {
+  color: plum;
+}
+
+h1, table, div {
+  margin-inline: auto;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 0.1rem solid lavender;
+  padding: 0.5rem;
+}
+
+td:nth-child(odd) {
+  text-align: left;
+}
+
+td:nth-child(even) {
+  text-align: right;
+}
+
+div {
+  max-width: 50rem;
+  width: fit-content;
+}
+
+h3 {
+  margin: 0;
+}
+
+ul {
+  display: inline-block;
+  list-style-position: inside;
+  padding: 0px;
+  text-align: left;
+}

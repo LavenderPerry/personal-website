@@ -1,0 +1,217 @@
+# To learn about configuring soupault, visit https://www.soupault.app/reference-manual
+
+[settings]
+  soupault_version = "4.10.0"
+
+  strict = true
+  verbose = true
+  debug = false
+
+  site_dir = "site"
+  build_dir = "build"
+
+  clean_urls = true
+  page_file_extensions = ["html", "md"]
+  default_extension = "html"
+  ignore_extensions = ["draft"]
+
+  generator_mode = true
+  complete_page_selector = "html"
+
+  default_template_file = "templates/main.html"
+  default_content_selector = "main"
+  default_content_action = "append_child"
+
+  keep_doctype = true
+  doctype = "<!DOCTYPE html>"
+
+  pretty_print_html = true
+
+  plugin_discovery = true
+  plugin_dirs = ["plugins", "vendored/plugins"]
+
+  caching = false
+
+  page_character_encoding = "utf-8"
+
+[preprocessors]
+  md = "cmark-gfm --smart -e footnotes"
+
+# Options for Atom feed
+[custom_options]
+  atom_feeds = true
+
+# General all page widgets
+
+# Takes the content of the first <h1> and inserts it into the <title>
+[widgets.page-title]
+  widget = "title"
+  selector = "h1"
+  default = "Untitled Page"
+  append = " &mdash; Lavender's Website"
+  force = false
+
+# Inserts the favicon stuff into the page
+[widgets.favicon]
+  widget = "include"
+  file = "templates/favicon.html"
+  action = "replace_element"
+  selector = "#favicon-html"
+
+# Inserts the navigation menu into the page
+[widgets.nav-menu]
+  widget = "include"
+  file = "templates/menu.html"
+  selector = "nav"
+
+# Puts a div around the title header so that it is centered
+[widgets.center-title]
+  widget = "wrap"
+  wrapper = '<div id="title-wrapper">'
+  selector = "h1"
+  wrap_all = false
+
+# Blog index
+
+[index]
+  index = true
+  section = "blog/posts"
+  date_formats = ["%FT%H:%M:%S%:z"]
+  sort_descending = true
+  extract_after_widgets = ["add-datetimes"]
+  sort_by = "date"
+
+[index.fields]
+  title = { selector = "h1", required = true }
+  content = { selector = "#post-content", required = true }
+  excerpt = { selector = "p" }
+  date = { selector = "time", extract_attribute = "datetime" }
+  date_elem = { selector = "#last-update-container" }
+  tags = { selector = ".tag-link", select_all = true }
+  reading_time = { selector = "#reading-time" }
+
+[index.views.blog]
+  index_selector = "#blog-entries"
+  section = "blog/posts"
+  index_template = """
+    {% for e in entries %}
+      <div>
+        <h2><a href="{{e.url}}">{{e.title}}</a></h2>
+        <p><strong>Last update:</strong> {{e.date_elem}}.</p>
+        <p><strong>Reading time:</strong> {{e.reading_time}}.</p>
+        {% if e.tags %}
+          <p>
+            <strong>Tags: </strong>
+            {% for t in e.tags %}
+              <a href="/blog/tags/{{t}}">{{t}}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+          </p>
+        {% endif %}
+        <p>{{e.excerpt}}</p>
+        <a href="{{e.url}}">Read more</a>
+      </div>
+    {% endfor %}
+  """
+  tag_path = "tags"
+  file = "vendored/helpers/blog-index.lua"
+
+# Blog widgets
+
+# Generate an Atom feed from the posts
+[widgets.make-atom-feed]
+  widget = "atom"
+  page = "blog/index.html"
+  site_url = "https://lavenderperry.codeberg.page" # will possibly be changed
+  site_author = "Lavender Perry"
+  site_author_email = "lavender.perry@outlook.com"
+  site_title = "Lavender's Website"
+  site_icon = "favicon-32x32.png"
+
+# Delete footnotes from the blog index page
+[widgets.delete-footnotes]
+  widget = "delete_element"
+  section = "blog/tags"
+  page = "blog/index.html"
+  selector = ".footnote-ref"
+
+# Surround the tag list with a div so that it is centered
+[widgets.center-tag-list]
+  widget = "wrap"
+  page = "blog/tags/index.html"
+  wrapper = "<div>"
+  selector = "ul"
+
+# Separate the title and post content
+[widgets.split-content]
+  section = "blog/posts"
+  after = "center-title"
+  widget = "separate-content"
+  title_selector = "#title-wrapper"
+
+# Handle tags
+[widgets.do-tags-setup]
+  section = "blog/posts"
+  after = "split-content"
+  widget = "setup-tags"
+
+# Insert a container for the table of contents
+[widgets.insert-toc-container]
+  section = "blog/posts"
+  after = "do-tags-setup"
+  widget = "insert_html"
+  action = "insert_before"
+  selector = "hr"
+  html = '<div id="table-of-contents"></div>'
+
+# Insert the table of contents
+[widgets.insert-toc]
+  section = "blog/posts"
+  after = "insert-toc-container"
+  widget = "toc"
+  selector = "#table-of-contents"
+  min_level = 2
+  heading_links = true
+  use_heading_slug = true
+
+# Insert a container for reading time
+[widgets.insert-reading-time-container]
+  section = "blog/posts"
+  after = "do-tags-setup"
+  widget = "insert_html"
+  action = "insert_after"
+  selector = "#title-wrapper"
+  html = '<div>Estimated reading time: <span id="reading-time"></span>.</div>'
+
+# Insert the average reading time
+[widgets.insert-reading-time]
+  section = "blog/posts"
+  after = "insert-reading-time-container"
+  widget = "reading-time"
+  selector = "#reading-time"
+  content_selector = "#post-content"
+  reading_speed = 238 # Average adult reading speed of English non-fiction
+                      # (source: https://osf.io/xynwg)
+
+# Insert a container for last update
+[widgets.insert-last-update-container]
+  section = "blog/posts"
+  after = "insert-reading-time"
+  widget = "insert_html"
+  action = "insert_after"
+  selector = "#title-wrapper"
+  html = '<div>Last update: <span id="last-update-container"></span>.</div>'
+
+# Insert the last update of the post
+[widgets.insert-last-update]
+  section = "blog/posts"
+  after = "insert-last-update-container"
+  widget = "git-timestamp"
+  timestamp_container_selector = "#last-update-container"
+  timestamp_format = "<time>%s</time>"
+  git_date_format = "iso"
+
+# Puts datetime attributes on each time element
+[widgets.add-datetimes]
+  section = "blog/posts"
+  after = "insert-last-update"
+  widget = "add-datetime-attributes"
