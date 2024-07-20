@@ -6,7 +6,7 @@ body {
 }
 
 nav {
-  border-bottom: 2px solid lavender;
+  border-bottom: 0.1rem solid lavender;
   display: flex;
 }
 
@@ -19,13 +19,21 @@ nav a {
   text-decoration: none;
 }
 
-nav a:hover {
+nav a:hover, .tag-link:hover {
   background-color: lavender;
   color: black !important;
 }
 
+.tag-link {
+  border: 0.1rem solid lavender;
+  color: lavender !important;
+  margin-inline: 1rem;
+  padding-inline: 1rem;
+  text-decoration: none;
+}
+
 hr {
-  border: 2px dashed lavender;
+  border: 0.1rem dashed lavender;
 }
 
 a {

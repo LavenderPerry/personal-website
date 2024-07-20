@@ -78,15 +78,14 @@
   section = "blog/posts"
   date_formats = ["%FT%H:%M:%S%:z"]
   sort_descending = true
-  extract_after_widgets = ["add-datetimes"]
+  extract_after_widgets = ["insert-last-update"]
   sort_by = "date"
 
 [index.fields]
   title = { selector = "h1", required = true }
   content = { selector = "#post-content", required = true }
   excerpt = { selector = "p" }
-  date = { selector = "time", extract_attribute = "datetime" }
-  date_elem = { selector = "#last-update-container" }
+  date = { selector = "time" }
   tags = { selector = ".tag-link", select_all = true }
   reading_time = { selector = "#reading-time" }
 
@@ -97,7 +96,7 @@
     {% for e in entries %}
       <div>
         <h2><a href="{{e.url}}">{{e.title}}</a></h2>
-        <p><strong>Last update:</strong> {{e.date_elem}}.</p>
+        <p><strong>Last update:</strong> <time>{{e.date}}</time>.</p>
         <p><strong>Reading time:</strong> {{e.reading_time}}.</p>
         {% if e.tags %}
           <p>
@@ -208,10 +207,4 @@
   widget = "git-timestamp"
   timestamp_container_selector = "#last-update-container"
   timestamp_format = "<time>%s</time>"
-  git_date_format = "iso"
-
-# Puts datetime attributes on each time element
-[widgets.add-datetimes]
-  section = "blog/posts"
-  after = "insert-last-update"
-  widget = "add-datetime-attributes"
+  git_date_format = "iso-strict"
