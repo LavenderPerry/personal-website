@@ -48,7 +48,7 @@
   widget = "title"
   selector = "h1"
   default = "Untitled Page"
-  append = " &mdash; Lavender's Website"
+  append = " &mdash; Lavender"
   force = false
 
 # Inserts the favicon stuff into the page
@@ -123,7 +123,7 @@
   site_url = "https://lavenderperry.codeberg.page" # will possibly be changed
   site_author = "Lavender Perry"
   site_author_email = "lavender.perry@outlook.com"
-  site_title = "Lavender's Website"
+  site_title = "Lavender's Blog"
   site_icon = "favicon-32x32.png"
 
 # Delete footnotes from the blog index page
