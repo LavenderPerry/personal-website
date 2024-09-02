@@ -14,6 +14,7 @@ all: site assets
 .PHONY: clean
 clean:
 	rm -r $(BUILD_DIR)
+	mkdir $(BUILD_DIR)
 
 .PHONY: serve
 serve:

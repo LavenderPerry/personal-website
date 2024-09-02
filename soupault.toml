@@ -74,8 +74,8 @@
 # Blog index
 
 [index]
-  index = true
   section = "blog/posts"
+  index = true
   date_formats = ["%FT%H:%M:%S%:z"]
   sort_descending = true
   extract_after_widgets = ["insert-last-update"]
@@ -90,8 +90,8 @@
   reading_time = { selector = "#reading-time" }
 
 [index.views.blog]
-  index_selector = "#blog-entries"
   section = "blog/posts"
+  index_selector = "#blog-entries"
   index_template = """
     {% for e in entries %}
       <div>
@@ -118,8 +118,8 @@
 
 # Generate an Atom feed from the posts
 [widgets.make-atom-feed]
-  widget = "atom"
   page = "blog/index.html"
+  widget = "atom"
   site_url = "https://lavenderperry.codeberg.page" # will possibly be changed
   site_author = "Lavender Perry"
   site_author_email = "lavender.perry@outlook.com"
@@ -128,15 +128,15 @@
 
 # Delete footnotes from the blog index page
 [widgets.delete-footnotes]
-  widget = "delete_element"
   section = "blog/tags"
   page = "blog/index.html"
+  widget = "delete_element"
   selector = ".footnote-ref"
 
 # Surround the tag list with a div so that it is centered
 [widgets.center-tag-list]
-  widget = "wrap"
   page = "blog/tags/index.html"
+  widget = "wrap"
   wrapper = "<div>"
   selector = "ul"
 
