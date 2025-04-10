@@ -1,7 +1,6 @@
 # my website
 
-https://lavenderperry.codeberg.page\
-You can find build output at https://codeberg.org/LavenderPerry/pages
+https://lavender.nekoweb.org
 
 ## Building
 ```sh
