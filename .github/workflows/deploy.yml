@@ -23,7 +23,8 @@ jobs:
         version: "4.11.0"
 
     - name: Build website
-      run: make all
+      run: echo $PATH # debug
+      #run: make all
 
     - name: Push to build branch
       uses: s0/git-publish-subdir-action@v2.6.0
