@@ -1,0 +1,34 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    name: Deploy
+    
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install Soupault
+      uses: supplypike/setup-bin@v4.0.1
+      with:
+        uri: "https://github.com/PataphysicalSociety/soupault/releases/download/4.11.0/soupault-4.11.0-linux-x86_64.tar.gz"
+        name: "soupault"
+        version: "4.11.0"
+
+    - name: Build website
+      run: make all
+
+    - name: Push to build branch
+      uses: s0/git-publish-subdir-action@v2.6.0
+      env:
+        REPO: self
+        BRANCH: build
+        FOLDER: build
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
