@@ -23,7 +23,7 @@ jobs:
         version: "4.11.0"
 
     - name: Build website
-      run: echo $PATH # debug
+      run: ls /opt/hostedtoolcache/soupault/4.11.0/x64 # debug
       #run: make all
 
     - name: Push to build branch
