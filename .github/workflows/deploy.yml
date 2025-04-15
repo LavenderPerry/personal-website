@@ -37,15 +37,16 @@ jobs:
         USER: lavender
         LOCAL_DIR: build
         REMOTE_DIR: /
+        FORCESSL: false
       run:
         lftp $HOST -u $USER,${{ secrets.NEKOWEB_APIKEY }} -e "
           set net:timeout 60;
           set net:max-retries 20;
           set net:reconnect-interval-multiplier 2;
           set net:reconnect-interval-base 5;
-          set ftp:ssl-force true; 
+          set ftp:ssl-force $FORCESSL; 
           set sftp:auto-confirm yes;
-          set ssl:verify-certificate true; 
+          set ssl:verify-certificate $FORCESSL; 
           mirror -v -P 5 -R -n -L -x ^\.git/$ $LOCAL_DIR $REMOTE_DIR;
           quit
         "
