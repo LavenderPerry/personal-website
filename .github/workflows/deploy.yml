@@ -16,7 +16,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get -y make cmark-gfm
+        sudo apt-get -y install make cmark-gfm
 
     - name: Install Soupault
       env:
