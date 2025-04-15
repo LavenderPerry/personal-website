@@ -13,15 +13,21 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
+    - name: Install dependencies
+      run:
+        sudo apt-get update
+        sudo apt-get -y make cmark-gfm
+
     - name: Install Soupault
-      uses: supplypike/setup-bin@v4.0.1
-      with:
-        uri: "https://github.com/PataphysicalSociety/soupault/releases/download/4.11.0/soupault-4.11.0-linux-x86_64.tar.gz"
-        name: "soupault"
-        version: "4.11.0"
+      env:
+        SOUPAULT_VERSION: 4.11.0
+      run:
+        wget "https://github.com/PataphysicalSociety/soupault/releases/download/4.11.0/soupault-$SOUPAULT_VERSION-linux-x86_64.tar.gz"
+        tar xvf soupault-$SOUPAULT_VERSION-linux-x86_64.tar.gz
+        sudo mv -v ./soupault-$SOUPAULT_VERSION-linux-x86_64/soupault /usr/bin/
 
     - name: Build website
-      run: make all SSG=soupault-4.11.0-linux-x86_64
+      run: make all
 
     - name: Push to build branch
       uses: s0/git-publish-subdir-action@v2.6.0
