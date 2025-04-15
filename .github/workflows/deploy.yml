@@ -47,6 +47,6 @@ jobs:
           set ftp:ssl-force $FORCESSL; 
           set sftp:auto-confirm yes;
           set ssl:verify-certificate $FORCESSL; 
-          mirror -v -P 5 -R -n -L -x ^\.git/$ $LOCAL_DIR $REMOTE_DIR;
+          mirror -v -P 5 -R -n -L -x -p ^\.git/$ $LOCAL_DIR $REMOTE_DIR;
           quit
         "
