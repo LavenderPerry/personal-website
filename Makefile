@@ -8,8 +8,7 @@ site:
 .PHONY: assets
 assets:
 	mkdir -p $(BUILD_DIR)
-	cp -r assets/* assets/.domains assets/.well-known vendored/assets/* \
-		$(BUILD_DIR)/
+	cp -r assets/* assets/.domains assets/.well-known $(BUILD_DIR)/
 
 .PHONY: all
 all: site assets
