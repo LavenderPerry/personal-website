@@ -1,13 +1,15 @@
 BUILD_DIR := build
+SSG := soupault
 
 .PHONY: site
 site:
-	soupault
+	$(SSG)
 
 .PHONY: assets
 assets:
 	mkdir -p $(BUILD_DIR)
-	cp -r assets/* assets/.domains assets/.well-known vendored/assets/* $(BUILD_DIR)/
+	cp -r assets/* assets/.domains assets/.well-known vendored/assets/* \
+		$(BUILD_DIR)/
 
 .PHONY: all
 all: site assets
@@ -19,9 +21,3 @@ clean:
 .PHONY: serve
 serve:
 	python3 -m http.server --directory $(BUILD_DIR)
-
-.PHONY: deploy
-deploy:
-	git -C $(BUILD_DIR) add -A
-	git -C $(BUILD_DIR) commit -m "latest build"
-	git -C $(BUILD_DIR) push
