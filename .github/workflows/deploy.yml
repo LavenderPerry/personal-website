@@ -16,7 +16,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get -y install make cmark-gfm
+        sudo apt-get -y install make lftp cmark-gfm
 
     - name: Install Soupault
       env:
@@ -29,10 +29,23 @@ jobs:
     - name: Build website
       run: make all
 
-    - name: Push to build branch
-      uses: s0/git-publish-subdir-action@v2.6.0
+    - name: Push to Nekoweb
+      # Uploads to Nekoweb FTP
+      # Modified from https://github.com/GenieTim/ftp-action
       env:
-        REPO: self
-        BRANCH: build
-        FOLDER: build
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        HOST: ftp.nekoweb.org:30000
+        USER: lavender
+        LOCAL_DIR: build
+        REMOTE_DIR: /
+      run:
+        lftp $HOST -u $USER,${{ secrets.NEKOWEB_APIKEY }} -e "
+          set net:timeout 60;
+          set net:max-retries 20;
+          set net:reconnect-interval-multiplier 2;
+          set net:reconnect-interval-base 5;
+          set ftp:ssl-force true; 
+          set sftp:auto-confirm yes;
+          set ssl:verify-certificate true; 
+          mirror -v -P 5 -R -n -L -x ^\.git/$ $LOCAL_DIR $REMOTE_DIR;
+          quit
+        "
