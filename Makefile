@@ -6,6 +6,8 @@ SSG := soupault
 FTP_HOST := ftp.nekoweb.org:30000
 FTP_USER := lavender
 
+export FTP_HOST FTP_USER FTP_PASSWORD BUILD_DIR # For deploy
+
 .PHONY: all
 all: site assets
 
@@ -28,14 +30,4 @@ serve:
 
 .PHONY: deploy
 deploy:
-	lftp $(FTP_HOST) -u $(FTP_USER),$(FTP_PASSWORD) -e "
-		set net:timeout 60;
-		set net:max-retries 20;
-		set net:reconnect-interval-multiplier 2;
-		set net:reconnect-interval-base 5;
-		set ftp:ssl-force false; 
-		set sftp:auto-confirm yes;
-		set ssl:verify-certificate false; 
-		mirror -v -P 5 -R -n -L -p $(BUILD_DIR) /;
-		quit
-	"
+	./deploy.sh
