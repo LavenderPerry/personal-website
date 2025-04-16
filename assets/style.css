@@ -1,0 +1,87 @@
+:root {
+    --bg: mediumvioletred;
+    --fg: lavender;
+    --shadow: blueviolet;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--fg);
+    margin: 1rem 4rem;
+}
+
+nav, th, td, .tag-link, .blog-entry {
+    border: 0.1rem solid var(--fg);
+}
+
+nav, table, .blog-entry {
+    box-shadow: 1rem 1rem var(--shadow);
+    margin: 0 1rem 2rem 0;
+    padding: 1rem;
+}
+
+nav ul {
+    padding: 0px;
+}
+
+nav .active {
+    color: var(--fg) !important;
+    font-style: italic;
+    text-decoration: none;
+}
+
+nav {
+    position: absolute;
+    top: 1rem;
+    width: 12rem;
+}
+
+main {
+    margin-left: 20rem;
+    width: 80rem;
+}
+
+hr {
+    border: 0.1rem dashed var(--fg);
+}
+
+a {
+    color: powderblue;
+}
+
+a:visited {
+    color: palegreen;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 0.5rem;
+}
+
+td:nth-child(odd) {
+    text-align: left;
+}
+
+td:nth-child(even) {
+    text-align: right;
+}
+
+h3 {
+    margin: 0;
+}
+
+ul {
+    list-style-position: inside;
+    list-style-image: url("listitem.png");
+    text-align: left;
+}
+
+.tag-link {
+    color: var(--fg) !important;
+    margin-inline: 1rem;
+    padding-inline: 1rem;
+    text-decoration: none;
+}

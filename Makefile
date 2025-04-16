@@ -1,6 +1,9 @@
 BUILD_DIR := build
 SSG := soupault
 
+.PHONY: all
+all: site assets
+
 .PHONY: site
 site:
 	$(SSG)
@@ -9,9 +12,6 @@ site:
 assets:
 	mkdir -p $(BUILD_DIR)
 	cp -r assets/* assets/.well-known $(BUILD_DIR)/
-
-.PHONY: all
-all: site assets
 
 .PHONY: clean
 clean:
