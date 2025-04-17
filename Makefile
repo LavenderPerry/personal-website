@@ -22,7 +22,7 @@ assets:
 
 .PHONY: clean
 clean:
-	rm -rf $(BUILD_DIR)/* $(BUILD_DIR)/.well-known 
+	rm -rf $(BUILD_DIR)
 
 .PHONY: serve
 serve:

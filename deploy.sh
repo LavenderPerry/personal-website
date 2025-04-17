@@ -31,4 +31,4 @@ lftp "$FTP_HOST" -u "$FTP_USER,$FTP_PASSWORD" -e "
     set ssl:verify-certificate false;
     mirror -v -P 5 -R -n -L -p $BUILD_DIR /;
     quit
-" || true # Ignore error
+"
