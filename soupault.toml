@@ -35,7 +35,7 @@ caching = false
 page_character_encoding = "utf-8"
 
 [preprocessors]
-md = "cmark-gfm --smart -e footnotes"
+md = "pandoc -f markdown -t html5"
 
 # Options for Atom feed
 [custom_options]
