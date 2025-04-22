@@ -47,6 +47,9 @@ That is what I do for all the buttons on this website.
 This section is for any people, projects, and/or resources that I used to make
 this website which are not already covered by the buttons above.
 
+I write all the pages on this website in Markdown, and convert it to HTML using
+[Pandoc](https://pandoc.org).
+
 At some point I will add a font to this website,
 the font I use will be acknowledged here.
 

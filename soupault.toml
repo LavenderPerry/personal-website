@@ -67,6 +67,8 @@ selector = "nav"
 [widgets.link-highlight]
 widget = "section-link-highlight"
 after = "nav-menu"
+active_link_class = "active"
+selector = "nav"
 
 # Blog index
 

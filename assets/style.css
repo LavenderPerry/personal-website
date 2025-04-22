@@ -68,13 +68,8 @@ th, td {
     padding: 0.5rem;
 }
 
-td:nth-child(odd) {
-    text-align: left;
-}
-
-td:nth-child(even) {
-    text-align: right;
-}
+td:nth-child(odd)  { text-align: left; }
+td:nth-child(even) { text-align: right; }
 
 h3 {
     margin: 0;
@@ -92,3 +87,7 @@ ul {
     padding-inline: 1rem;
     text-decoration: none;
 }
+
+/* Syntax highlighting with no colors */
+.kw, .dt, .bu, .fu, .at, .er { font-weight: bold; }
+.ct, .st, .co, .fu, .at, .er { font-style: italic; }

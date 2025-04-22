@@ -16,6 +16,7 @@ nav_menu_selector = config["selector"]
 
 if (not active_link_class) then
   Log.warning("active_link_class option is not set, using default (\"active\")")
+  Plugin.fail()
   active_link_class = "active"
 end
 
