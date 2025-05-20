@@ -5,10 +5,11 @@ Use the navigation box to explore the website, or continue reading this page.
 
 ## About Me
 
---------- -------------------
-full name Lavender Nova Perry
-pronouns   she/her, they/them
---------- -------------------
+-------- ------------------
+name               Lavender
+pronouns she/her, they/them
+location         everywhere
+-------- ------------------
 
 I like to play rugby, write, make art, and make/play games.
 
@@ -40,6 +41,7 @@ That is what I do for all the buttons on this website.
 [![Nonbinary and Genderqueer](/buttons/enbyqueer.png)](https://badge.les.bi)
 [![Autism](/buttons/autism.webp)](https://futurefishy.tumblr.com/post/720764128087638016)
 [![062 best WPM](/buttons/wpm.png)](https://wiggle.monster/creative/graphics/buttons/#home)
+[![Web Pi](/buttons/webpi.png)](https://web3.14159.annwfn.net)
 [![Rated 14+](/buttons/web14.gif)](https://mabsland.com/Adoption.html)
 
 ## Other acknowledgements
