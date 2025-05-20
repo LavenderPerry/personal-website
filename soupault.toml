@@ -3,7 +3,6 @@
 [settings]
 soupault_version = "4.10.0"
 
-strict = true
 verbose = true
 debug = false
 
