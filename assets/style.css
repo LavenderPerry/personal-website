@@ -2,12 +2,19 @@
     --bg: mediumvioletred;
     --fg: lavender;
     --shadow: blueviolet;
+    --sidebar-width: 12vw;
 }
 
 body {
     background-color: var(--bg);
     color: var(--fg);
-    margin: 1rem 4rem;
+    margin: 1rem 1rem;
+}
+
+#sidebar {
+    position: fixed;
+    height: 100%;
+    width: 10rem;
 }
 
 nav, th, td, .tag-link, .blog-entry {
@@ -30,15 +37,20 @@ nav .active {
     text-decoration: none;
 }
 
-nav {
-    position: absolute;
-    top: 1rem;
-    width: 12rem;
+main {
+    margin-left: 11rem;
 }
 
-main {
-    margin-left: 20rem;
-    width: 80rem;
+@media screen and (max-width: 33rem) {
+    #sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    main {
+        margin-left: 0;
+    }
 }
 
 img {
@@ -86,6 +98,10 @@ ul {
     margin-inline: 1rem;
     padding-inline: 1rem;
     text-decoration: none;
+}
+
+code {
+    white-space: pre-wrap;
 }
 
 /* Syntax highlighting with no colors */
